@@ -15,7 +15,7 @@ void setup() {
 
   scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
   Serial.println("калибровка тензодатчика...");
-  scale.set_scale(8137);
+  scale.set_scale(7391);
   scale.tare();
 
   pinMode(TILT_PIN, INPUT_PULLUP);
@@ -45,6 +45,17 @@ void loop() {
     tiltDetected = false;
   }
 
+  if (tiltCount == 10){
+    Serial.println();
+    Serial.print("СБРООООООС через 10 секунд, не трогайте ложку");
+    for (int i = 0; i < 10; i++){
+      Serial.print(".");
+      delay(1000);
+    }
+    tiltCount = 0;
+    scale.tare();
+  }
+
   Serial.println();
-  delay(500);
+  delay(100);
 }
