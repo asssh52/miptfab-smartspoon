@@ -16,7 +16,7 @@ void setup() {
 
   scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
   Serial.println("калибровка тензодатчика...");
-  scale.set_scale(4111);
+  scale.set_scale(16560); //17269 - high //16560 - small
   scale.tare();
 
   pinMode(TILT_PIN, INPUT_PULLUP);
